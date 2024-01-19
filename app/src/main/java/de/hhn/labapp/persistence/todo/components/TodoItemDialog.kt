@@ -18,8 +18,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import de.hhn.labapp.persistence.todo.viewmodel.TodoListViewModel
 
+/**
+ * Composable function representing a dialog for adding or editing a TodoItem.
+ *
+ * @param viewModel The ViewModel managing TodoItems.
+ */
 @Composable
 fun TodoItemDialog(viewModel: TodoListViewModel) {
+    // Initialize the text field with the current TodoItem's text or an empty string
     viewModel.currentItemText = viewModel.currentItem?.text ?: ""
 
     fun onDismissRequest() {
@@ -28,23 +34,28 @@ fun TodoItemDialog(viewModel: TodoListViewModel) {
         }
         viewModel.currentItem = null
     }
-
+    // Dialog composable for TodoItem editing or creation
     Dialog(
         onDismissRequest = ::onDismissRequest,
     ) {
+        // Card composable with a border
         Card(
             modifier = Modifier.padding(4.dp),
             border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
         ) {
+            // Column layout for organizing components vertically
             Column(
                 modifier = Modifier.padding(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
+                // Text field for entering or editing TodoItem text
                 TodoItemTextField(viewModel)
+                // Row layout for buttons (Delete, Cancel, Save)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End,
                 ) {
+                    // Delete button to delete the current TodoItem
                     TextButton(
                         onClick = {
                             viewModel.currentItem?.let { viewModel.deleteItem(it) }
@@ -53,10 +64,14 @@ fun TodoItemDialog(viewModel: TodoListViewModel) {
                     ) {
                         Text("Delete")
                     }
+                    // Spacer to fill the available space between buttons
                     Spacer(modifier = Modifier.weight(1f))
+                    // Cancel button to dismiss the dialog without saving changes
                     TextButton(onClick = ::onDismissRequest) {
                         Text("Cancel")
                     }
+
+                    // Save button to save changes to the TodoItem
                     TextButton(
                         onClick = {
                             viewModel.onSaveItem()
@@ -71,9 +86,14 @@ fun TodoItemDialog(viewModel: TodoListViewModel) {
         }
     }
 }
-
+/**
+ * Composable function representing an outlined text field for entering or editing TodoItem text.
+ *
+ * @param viewModel The ViewModel managing TodoItems.
+ */
 @Composable
 private fun TodoItemTextField(viewModel: TodoListViewModel) {
+    // OutlinedTextField composable for entering or editing TodoItem text
     OutlinedTextField(
         modifier = Modifier
             .fillMaxWidth()
