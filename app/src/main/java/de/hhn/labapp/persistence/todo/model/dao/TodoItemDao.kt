@@ -17,10 +17,6 @@ interface TodoItemDao {
     @Insert
     fun insertTodoItem(todoItem: TodoItem)
 
-    @Insert
-    fun insertAll(todoItems: List<TodoItem>)
-
-
     /**
      * Get all TodoItems from the database.
      *
@@ -38,6 +34,8 @@ interface TodoItemDao {
     @Query("SELECT * FROM TodoItem WHERE id = :itemId")
     fun getTodoItemById(itemId: Int): TodoItem?
 
+    @Query("SELECT COUNT(*) FROM TodoItem WHERE id = :itemId")
+    fun doesTodoItemExist(itemId: Int): Boolean
     /**
      * Update an existing TodoItem in the database.
      *
@@ -61,4 +59,13 @@ interface TodoItemDao {
      */
     @Query("DELETE FROM TodoItem WHERE id = :itemId")
     fun deleteTodoItemById(itemId: Int)
+
+    /**
+     * Get filtered TodoItems from the database based on the search query.
+     *
+     * @param searchQuery The query to filter TodoItems.
+     * @return A list of filtered TodoItems in the database.
+     */
+    @Query("SELECT * FROM TodoItem WHERE text LIKE '%' || :searchQuery || '%'")
+    fun getFilteredTodoItems(searchQuery: String): List<TodoItem>
 }
