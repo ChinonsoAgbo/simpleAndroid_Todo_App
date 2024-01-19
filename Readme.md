@@ -66,3 +66,6 @@ Also make sure that you open the project in it's root directory (the directory c
 ### It still doesn't work
 
 If you have tried the steps above and still have issues with the project setup, please contact us per email. Our email addresses are found in the slides.
+<img width="223" alt="Screenshot 2024-01-19 214650" src="https://github.com/ChinonsoAgbo/simpleAndroid_Todo_App/assets/81990068/0341ec22-086f-4722-bed4-713ef626c322">
+<img width="204" alt="Screenshot 2024-01-19 214737" src="https://github.com/ChinonsoAgbo/simpleAndroid_Todo_App/assets/81990068/e8d4fc6a-4789-4a54-af9f-8d624445b64e">
+<img width="212" alt="Screenshot 2024-01-19 214750" src="https://github.com/ChinonsoAgbo/simpleAndroid_Todo_App/assets/81990068/b66db3cd-d8f7-47dd-805c-9494ec4df518">
